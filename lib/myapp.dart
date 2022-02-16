@@ -1,3 +1,4 @@
+import 'package:curso_alura_2/screens/contacts_list.dart';
 import 'package:flutter/material.dart';
 import 'screens/dashboard.dart';
 
@@ -9,15 +10,17 @@ class MyApp extends StatelessWidget {
     final ThemeData theme = ThemeData();
     return MaterialApp(
         theme: theme.copyWith(
-          colorScheme: theme.colorScheme.copyWith(
-            primary: Colors.green[900],
-            secondary: Colors.green[900],
-          ),
           buttonTheme: theme.buttonTheme.copyWith(
             buttonColor: Colors.blueAccent[700],
             textTheme: ButtonTextTheme.primary,
           ),
+          colorScheme: theme.colorScheme.copyWith(
+            primary: Colors.green[900],
+            secondary: Colors.green[900],
+          ),
         ),
-        home: const Dashboard());
+        home: const Dashboard(),
+        debugShowCheckedModeBanner: false ,
+        );
   }
 }

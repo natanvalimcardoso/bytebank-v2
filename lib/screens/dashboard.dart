@@ -1,3 +1,4 @@
+import 'package:curso_alura_2/screens/contacts_list.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -27,29 +28,36 @@ class Dashboard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Align(
               alignment: Alignment.bottomLeft,
-              child: Container(
-                padding: const EdgeInsets.all(8), //* Interessante
-                height: 100,
-                width: 150,
-                color: Theme.of(context).colorScheme.primary, //* Interessante
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Icon(
-                      Icons.people,
-                      color: Colors.white,
-                      size: 32, //* Interessante
-                    ),
-                    Text(
-                      'Contacts',
-                      style: TextStyle(
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ContactsList()),
+                  );
+                },
+                child: Ink(
+                  padding: const EdgeInsets.all(8), //* Interessante
+                  height: 100,
+                  width: 150,
+                  color: Theme.of(context).colorScheme.primary, //* Interessante
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Icon(
+                        Icons.people,
                         color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                        size: 32, //* Interessante
                       ),
-                    ),
-                  ],
+                      Text(
+                        'Contacts',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
