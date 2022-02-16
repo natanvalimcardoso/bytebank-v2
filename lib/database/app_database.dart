@@ -25,10 +25,14 @@ Future<int> save(Contact contact) {  // Função para salvar o contato
   });
 }
 
-void findAll() {
+void findAll() { // Função para buscar todos os contatos
   createDatabase().then((db) {
-    db.rawQuery('SELECT * FROM contacts').then((list) {
-      print(list);
-    });
+db.rawQuery('SELECT * FROM contacts').then((maps) {
+      maps.forEach((map) {
+        
+      });
   });
+});
 }
+/* db.rawQuery('SELECT * FROM contacts').then((list) { 
+    }); *///* rawQuery busca todos dados da tabela
