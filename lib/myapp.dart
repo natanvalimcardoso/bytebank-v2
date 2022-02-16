@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
-import 'screens/home_page.dart';
+import 'screens/dashboard.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    final ThemeData theme = ThemeData();
+    return MaterialApp(
+        theme: theme.copyWith(
+          colorScheme: theme.colorScheme.copyWith(
+            primary: Colors.green[900],
+            secondary: Colors.green[900],
+          ),
+          buttonTheme: theme.buttonTheme.copyWith(
+            buttonColor: Colors.blueAccent[700],
+            textTheme: ButtonTextTheme.primary,
+          ),
+        ),
+        home: const Dashboard());
   }
 }
