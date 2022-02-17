@@ -4,10 +4,9 @@ import 'package:curso_alura_2/models/contact.dart';
 import 'package:curso_alura_2/screens/contact_form.dart';
 import 'package:flutter/material.dart';
 
-import '../database/app_database.dart';
 
 class ContactsList extends StatefulWidget {
-  ContactsList({Key? key}) : super(key: key);
+  const ContactsList({Key? key}) : super(key: key);
 
   @override
   State<ContactsList> createState() => _ContactsListState();
@@ -32,7 +31,7 @@ class _ContactsListState extends State<ContactsList> {
               case ConnectionState.none:
                 break;
               case ConnectionState.waiting:
-                Center(child: CircularProgressIndicator());
+                const Center(child: CircularProgressIndicator());
                 break;
               case ConnectionState.active:
                 break;
@@ -40,6 +39,7 @@ class _ContactsListState extends State<ContactsList> {
                 final List<Contact> contacts = snapshot.data is Object
                     ? snapshot.data as List<Contact>
                     : [];
+
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     final Contact contact = contacts[index];
@@ -52,16 +52,19 @@ class _ContactsListState extends State<ContactsList> {
           }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
         onPressed: () {
-          setState(() {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ContactForm()),
-            );
-          });
+          Navigator.of(context)
+              .push(
+                MaterialPageRoute(
+                  builder: (context) => ContactForm(),
+                ),
+              )
+              .then(
+                (value) => setState(() {}),
+              );
         },
       ),
     );

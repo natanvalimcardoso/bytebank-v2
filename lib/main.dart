@@ -8,7 +8,3 @@ void main() {
   runApp(MyApp());
 
 }
- 
-/* findAll().then((contacts) {
-
-    }); */

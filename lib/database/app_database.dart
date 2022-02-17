@@ -1,5 +1,4 @@
 import 'package:sqflite/sqflite.dart';
-import '../models/contact.dart'; // Importei as models
 
 Future<Database> getDatabase() async {
   final String dbPath = await getDatabasesPath();
@@ -17,5 +16,3 @@ Future<Database> getDatabase() async {
     onDowngrade: onDatabaseDowngradeDelete,
   );
 }
-
-

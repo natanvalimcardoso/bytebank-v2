@@ -1,5 +1,3 @@
-import 'package:curso_alura_2/screens/contact_form.dart';
-import 'package:curso_alura_2/screens/contacts_list.dart';
 import 'package:flutter/material.dart';
 import 'screens/dashboard.dart';
 
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
           secondary: Colors.green[900],
         ),
       ),
-      home: Dashboard(),
+      home: const Dashboard(),
       debugShowCheckedModeBanner: false,
     );
   }
