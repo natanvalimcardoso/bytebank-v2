@@ -3,6 +3,8 @@ import 'package:curso_alura_2/models/contact.dart';
 import 'package:curso_alura_2/screens/contact_form.dart';
 import 'package:flutter/material.dart';
 
+import '../database/app_database.dart';
+
 class ContactsList extends StatefulWidget {
   ContactsList({Key? key}) : super(key: key);
 
@@ -11,23 +13,44 @@ class ContactsList extends StatefulWidget {
 }
 
 class _ContactsListState extends State<ContactsList> {
-  final List<Contact> contacts = [];
+  //final List<Contact> contacts = [];
 
   @override
   Widget build(BuildContext context) {
-    contacts.add(Contact(id: 0, name: 'natan', accountNumber: 1000));
+    //contacts.add(Contact(0, 'natan', 1000));
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Contacts'),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          final Contact contact = contacts[index];
-          return ContactItem(contact);
-        },
-        itemCount: contacts.length,
-      ),
+      body: FutureBuilder<List<Contact>>(
+          initialData: [],
+          future:
+              Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                break;
+              case ConnectionState.waiting:
+                Center(child: CircularProgressIndicator());
+                break;
+              case ConnectionState.active:
+                // TODO: Handle this case.
+                break;
+              case ConnectionState.done:
+                final List<Contact> contacts = snapshot.data is Object
+                    ? snapshot.data as List<Contact>
+                    : [];
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    final Contact contact = contacts[index];
+                    return ContactItem(contact);
+                  },
+                  itemCount: contacts.length,
+                );
+            }
+            return Text('Error');
+          }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         child: Icon(
@@ -37,9 +60,7 @@ class _ContactsListState extends State<ContactsList> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ContactForm()),
-          ).then((newValue) => setState(() {
-                //contactsList.add(newValue);
-              }));
+          ).then((newValue) => setState(() {}));
         },
       ),
     );

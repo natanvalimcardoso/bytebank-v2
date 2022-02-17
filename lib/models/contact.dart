@@ -3,7 +3,7 @@ class Contact{
   final String name;
   final int accountNumber;
 
-  Contact({required this.id, required this.name, required this.accountNumber});
+  Contact( this.id,  this.name,  this.accountNumber);
 
   @override
   String toString() {

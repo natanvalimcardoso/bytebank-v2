@@ -1,3 +1,4 @@
+import 'package:curso_alura_2/database/app_database.dart';
 import 'package:curso_alura_2/models/contact.dart';
 import 'package:flutter/material.dart';
 
@@ -34,21 +35,21 @@ class _ContactFormState extends State<ContactForm> {
               keyboardType: TextInputType.number,
             ),
             Container(
-              width: double.maxFinite,
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                child: Text(
-                  'Create',
-                ),
-                onPressed: () {
-                  final String name = _nameController.text;
-                  final int accountNumber = int.parse(_accountNumber.text);
+                width: double.maxFinite,
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton(
+                  child: Text(
+                    'Create',
+                  ),
+                  onPressed: () {
+                    final String name = _nameController.text;
+                    final int accountNumber = int.parse(_accountNumber.text);
 
-                  final newContact = Contact(name: name, accountNumber: accountNumber, id: 0);
-                  Navigator.pop(context, newContact);
-                },
-              )
-            )
+                    final newContact = Contact(0, name, accountNumber);
+                    save(newContact)
+                        .then((id) => Navigator.pop(context, newContact));
+                  },
+                ))
           ],
         ),
       ),

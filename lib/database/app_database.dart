@@ -27,7 +27,7 @@ Future<int> save(Contact contact) {
 
 
 
-/*Future<List<Contact>> findAll() {
+Future<List<Contact>> findAll() {
   return createDatabase().then((db) {
     return db.query('contacts').then((maps) {
       final List<Contact> contacts = [];
@@ -42,4 +42,4 @@ Future<int> save(Contact contact) {
       return contacts;
     });
   });
-}  */
+}  

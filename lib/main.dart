@@ -6,9 +6,11 @@ import 'myapp.dart';
 
 void main() {
   runApp(MyApp());
+
+  save(Contact(0, 'Natan', 2000));
+  save(Contact(0, 'Deu', 2000));
 }
-/*save(Contact(id: 0, name: 'alex', accountNumber: 100)).then((id) {
-    findAll().then((contacts) => debugPrint(contacts.toString()));
-    {}
-    ;
-  });  */
+ 
+/* findAll().then((contacts) {
+
+    }); */
