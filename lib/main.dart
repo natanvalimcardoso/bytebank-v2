@@ -7,8 +7,6 @@ import 'myapp.dart';
 void main() {
   runApp(MyApp());
 
-  save(Contact(0, 'Natan', 2000));
-  save(Contact(0, 'Deu', 2000));
 }
  
 /* findAll().then((contacts) {

@@ -1,4 +1,5 @@
 import 'package:curso_alura_2/components/contact_item.dart';
+import 'package:curso_alura_2/database/dao/contact_dao.dart';
 import 'package:curso_alura_2/models/contact.dart';
 import 'package:curso_alura_2/screens/contact_form.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class ContactsList extends StatefulWidget {
 }
 
 class _ContactsListState extends State<ContactsList> {
-  //final List<Contact> contacts = [];
+  final ContactDao _dao = ContactDao();
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,7 @@ class _ContactsListState extends State<ContactsList> {
       ),
       body: FutureBuilder<List<Contact>>(
           initialData: [],
-          future:
-              Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
+          future: _dao.findAll(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -35,7 +35,6 @@ class _ContactsListState extends State<ContactsList> {
                 Center(child: CircularProgressIndicator());
                 break;
               case ConnectionState.active:
-                // TODO: Handle this case.
                 break;
               case ConnectionState.done:
                 final List<Contact> contacts = snapshot.data is Object
@@ -57,10 +56,12 @@ class _ContactsListState extends State<ContactsList> {
           Icons.add,
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ContactForm()),
-          ).then((newValue) => setState(() {}));
+          setState(() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ContactForm()),
+            );
+          });
         },
       ),
     );

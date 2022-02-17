@@ -30,6 +30,7 @@ class Dashboard extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: InkWell(
                 onTap: () {
+                  
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => ContactsList()),
                   );
