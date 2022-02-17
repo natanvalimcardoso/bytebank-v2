@@ -15,24 +15,31 @@ Future<Database> createDatabase() {
   });
 }
 
-Future<int> save(Contact contact) {  // Função para salvar o contato
+Future<int> save(Contact contact) {
+  // Função para salvar o contato
   return createDatabase().then((db) {
     final Map<String, dynamic> contactMap = Map();
-    contactMap['id'] = contact.id;
     contactMap['name'] = contact.name;
     contactMap['account_number'] = contact.accountNumber;
     return db.insert('contacts', contactMap); //* inserts salvar dados
   });
 }
 
-void findAll() { // Função para buscar todos os contatos
-  createDatabase().then((db) {
-db.rawQuery('SELECT * FROM contacts').then((maps) {
-      maps.forEach((map) {
-        
-      });
+
+
+/*Future<List<Contact>> findAll() {
+  return createDatabase().then((db) {
+    return db.query('contacts').then((maps) {
+      final List<Contact> contacts = [];
+      for (Map<String, dynamic> map in maps) {
+        final Contact contact = Contact(
+          map['id'],
+          map['name'],
+          map['account_number'],
+        );
+        contacts.add(contact);
+      }
+      return contacts;
+    });
   });
-});
-}
-/* db.rawQuery('SELECT * FROM contacts').then((list) { 
-    }); *///* rawQuery busca todos dados da tabela
+}  */
