@@ -1,4 +1,3 @@
-
 import 'package:curso_alura_2/models/contact.dart';
 import 'package:flutter/material.dart';
 import '../components/text_field_components.dart';
@@ -39,9 +38,7 @@ class _ContactFormState extends State<ContactForm> {
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
                 child: ElevatedButton(
-                  child: Text(
-                    'Create',
-                  ),
+                  child: Text('Create'),
                   onPressed: () {
                     final String name = _nameController.text;
                     final int accountNumber = int.parse(_accountNumber.text);

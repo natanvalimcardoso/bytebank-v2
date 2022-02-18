@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../models/contact.dart';
 
 class ContactItem extends StatelessWidget {
+
   final Contact contact;
   ContactItem(this.contact);
 
