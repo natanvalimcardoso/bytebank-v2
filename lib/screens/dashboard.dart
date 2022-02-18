@@ -1,5 +1,10 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:curso_alura_2/screens/contacts_list.dart';
+import 'package:curso_alura_2/widget/feature_item.dart';
 import 'package:flutter/material.dart';
+
+import 'transactions_list.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -29,45 +34,24 @@ class _DashboardState extends State<Dashboard> {
               child: Image.asset("assets/images/bytebank_logo.png"),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: InkWell(
-                onTap: () {
-                  
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ContactsList()),
-                  );
-                },
-                child: Ink(
-                  padding: const EdgeInsets.all(8), //* Interessante
-                  height: 100,
-                  width: 150,
-                  color: Theme.of(context).colorScheme.primary, //* Interessante
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Icon(
-                        Icons.people,
-                        color: Colors.white,
-                        size: 32, //* Interessante
-                      ),
-                      Text(
-                        'Contacts',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+          SizedBox(
+            height: 110,
+            child: ListView(scrollDirection: Axis.horizontal, children: [
+              Row(
+                children: [
+                  // ignore: prefer_const_constructors
+                  FeatureItem(
+                      title: 'Transfer',
+                      icons: Icons.monetization_on,
+                      route: ContactsList()),
+                  FeatureItem(
+                      title: 'Transaction Feed',
+                      icons: Icons.description,
+                      route: TransactionsList()),
+                ],
               ),
-            ),
-          )
+            ]),
+          ),
         ],
       ),
     );

@@ -21,7 +21,7 @@ class _ContactsListState extends State<ContactsList> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contacts'),
+        title: const Text('Transfer'),
       ),
       body: FutureBuilder<List<Contact>>(
           initialData: [],
