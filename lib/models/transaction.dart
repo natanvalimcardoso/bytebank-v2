@@ -2,7 +2,7 @@ import 'contact.dart';
 
 class Transaction {
   final double value;
-  final Contact contact; //* Juntou  a 2 models
+  final Contact contact;
 
   Transaction(
     this.value,

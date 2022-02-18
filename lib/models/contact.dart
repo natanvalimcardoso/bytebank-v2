@@ -5,6 +5,7 @@ class Contact{
 
   Contact( this.id,  this.name,  this.accountNumber);
 
+
   @override
   String toString() {
     return 'Contact{name: $name, accountNumber: $accountNumber}'; //* Testar se está funcionando
