@@ -6,7 +6,7 @@ import '../models/contact.dart';
 import '../screens/transactions_list.dart';
 
 const String url = 'http://172.19.240.1:8080/transactions';
-
+/* 
 class LoggingInterceptor implements InterceptorContract {
   @override
   Future<RequestData> interceptRequest({required RequestData data}) async {
@@ -25,7 +25,7 @@ class LoggingInterceptor implements InterceptorContract {
     print('body: ${data.body}');
     return data;
   }
-}
+} */
 
 Future<List<Transaction>> findAll() async {
   var response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 2));
@@ -48,8 +48,8 @@ Future<List<Transaction>> findAll() async {
   return transactions;
 }
 
-Future<Transaction> save(Transaction transaction) async {
-  final response = await http.post(
+Future<Transaction> save(Transaction transaction) async {// Async é quando não ira retornar nada imediatamente
+  final response = await http.post( // await é para esperar a resposta do servidor antes de continuar
     Uri.parse(url),
     body: jsonEncode({
       'value': transaction.value,
