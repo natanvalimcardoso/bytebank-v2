@@ -21,7 +21,7 @@ class _ContactsListState extends State<ContactsList> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Transfer'),
+        title: const Text('Contacts'),
       ),
       body: FutureBuilder<List<Contact>>(
           initialData: [],
@@ -48,7 +48,7 @@ class _ContactsListState extends State<ContactsList> {
                   itemCount: contacts.length,
                 );
             }
-            return const Text('Error');
+            return Text('Error');
           }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
