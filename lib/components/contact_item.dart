@@ -5,7 +5,9 @@ import '../models/contact.dart';
 class ContactItem extends StatelessWidget {
 
   final Contact contact;
-  ContactItem(this.contact);
+  // ignore: use_key_in_widget_constructors
+  const ContactItem(this.contact);
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +18,12 @@ class ContactItem extends StatelessWidget {
         },
         child: ListTile(
           title: Text(contact.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24.0,
               )),
           subtitle: Text(
             contact.accountNumber.toString(),
-            style: TextStyle(fontSize: 16.0),
+            style: const TextStyle(fontSize: 16.0),
           ),
         ),
       ),

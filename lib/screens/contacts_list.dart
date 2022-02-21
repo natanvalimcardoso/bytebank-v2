@@ -48,7 +48,7 @@ class _ContactsListState extends State<ContactsList> {
                   itemCount: contacts.length,
                 );
             }
-            return Text('Error');
+            return const Text('Error');
           }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,

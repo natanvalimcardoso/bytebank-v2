@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class TextFieldComponents extends StatelessWidget {
-  TextFieldComponents(
+  const TextFieldComponents(
       {Key? key,
       required this.labelText,
       required this.controlador,

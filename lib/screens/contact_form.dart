@@ -4,7 +4,7 @@ import '../components/text_field_components.dart';
 import '../database/dao/contact_dao.dart';
 
 class ContactForm extends StatefulWidget {
-  ContactForm({Key? key}) : super(key: key);
+  const ContactForm({Key? key}) : super(key: key);
 
   @override
   State<ContactForm> createState() => _ContactFormState();
@@ -19,7 +19,7 @@ class _ContactFormState extends State<ContactForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Formulário'),
+        title: const Text('Formulário'),
       ),
       body: Material(
         child: Column(
@@ -38,13 +38,13 @@ class _ContactFormState extends State<ContactForm> {
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
                 child: ElevatedButton(
-                  child: Text('Create'),
+                  child: const Text('Create'),
                   onPressed: () {
                     final String name = _nameController.text;
                     final int accountNumber = int.parse(_accountNumber.text);
 
                     setState(() {
-                      final newContact = Contact(0, name, accountNumber);
+                      final newContact = Contact(name: name, accountNumber: accountNumber);
                       _dao.save(newContact).then((id) => Navigator.pop(context));
                     });
                   },

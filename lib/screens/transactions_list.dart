@@ -1,19 +1,24 @@
-import 'package:curso_alura_2/http/webclient.dart';
-import 'package:flutter/material.dart';
 
-import '../models/contact.dart';
+import 'package:flutter/material.dart';
+import '../http/webclients/TransactionWebClient.dart';
+import '../models/transaction.dart';
 
 class TransactionsList extends StatelessWidget {
-  const TransactionsList({Key? key}) : super(key: key);
-
+  TransactionsList({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
+
+    final TransactionWebClient webClient = TransactionWebClient();
+
     return Scaffold(
+
+
         appBar: AppBar(
           title: const Text('Transactions'),
         ),
         body: FutureBuilder<List<Transaction>>(
-          future: findAll(),
+          future: webClient.findAll(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -37,14 +42,14 @@ class TransactionsList extends StatelessWidget {
                             leading: Icon(Icons.monetization_on),
                             title: Text(
                               transaction.value.toString(),
-                              style: const TextStyle(
+                              style:  TextStyle(
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             subtitle: Text(
-                              transaction.contact.name,
-                              style: const TextStyle(
+                              transaction.contact!.name,
+                              style:  TextStyle(
                                 fontSize: 16.0,
                               ),
                             ),
@@ -56,51 +61,14 @@ class TransactionsList extends StatelessWidget {
                   }
                 }
 
-                return const Center(
+                return  Center(
                   child: Text('No transactions found'),
                 );
             }
-            return const Text('Unknown error');
+            return  Text('Unknown error');
           },
         ));
   }
 }
 
-class Transaction {
-  final double value;
-  final Contact contact;
 
-  Transaction(
-    this.value,
-    this.contact,
-  );
-
-  @override
-  String toString() {
-    return 'Transaction{value: $value, contact: $contact}';
-  }
-}
-/*  body: ListView.builder(
-        itemBuilder: (context, index) {
-          final Transaction transaction = transactions[index];
-          return Card(
-            child: ListTile(
-              leading: Icon(Icons.monetization_on),
-              title: Text(
-                transaction.value.toString(),
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: Text(
-                transaction.contact.accountNumber.toString(),
-                style: TextStyle(
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-          );
-        },
-        itemCount: transactions.length,
-      ), */
