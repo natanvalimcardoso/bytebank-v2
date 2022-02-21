@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import '../models/contact.dart';
 
 class TransactionsList extends StatelessWidget {
+  const TransactionsList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Transactions'),
+          title: const Text('Transactions'),
         ),
         body: FutureBuilder<List<Transaction>>(
           future: findAll(),
@@ -17,7 +19,7 @@ class TransactionsList extends StatelessWidget {
               case ConnectionState.none:
                 break;
               case ConnectionState.waiting:
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
 
@@ -29,36 +31,36 @@ class TransactionsList extends StatelessWidget {
                   if (transactions != null) {
                     return ListView.builder(
                       itemBuilder: (context, index) {
-                        final Transaction transaction = transactions![index];
+                        final Transaction transaction = transactions[index];
                         return Card(
                           child: ListTile(
                             leading: Icon(Icons.monetization_on),
                             title: Text(
                               transaction.value.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             subtitle: Text(
                               transaction.contact.name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16.0,
                               ),
                             ),
                           ),
                         );
                       },
-                      itemCount: transactions?.length,
+                      itemCount: transactions.length,
                     );
                   }
                 }
 
-                return Center(
+                return const Center(
                   child: Text('No transactions found'),
                 );
             }
-            return Text('Unknown error');
+            return const Text('Unknown error');
           },
         ));
   }

@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:http_interceptor/http_interceptor.dart';
-
 import '../models/contact.dart';
 import '../screens/transactions_list.dart';
+
+const String url = 'http://172.19.240.1:8080/transactions';
 
 class LoggingInterceptor implements InterceptorContract {
   @override
@@ -27,8 +28,7 @@ class LoggingInterceptor implements InterceptorContract {
 }
 
 Future<List<Transaction>> findAll() async {
-  var url = 'http://172.19.240.1:8080/transactions';
-  var response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 5));
+  var response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 2));
   final List<dynamic> decodedJson = jsonDecode(response.body);
 
   final List<Transaction> transactions = [];
@@ -48,23 +48,26 @@ Future<List<Transaction>> findAll() async {
   return transactions;
 }
 
-
-
-
-
-
-
-/* class LoggingInterceptor implements InterceptorContract {
-  @override
-  Future<RequestData> interceptRequest({required RequestData data}) async {
-    print(data.toString());
-    return data;
-  }
-
-  @override
-  Future<ResponseData> interceptResponse({required ResponseData data}) async {
-      print(data.toString());
-      return data;
-  }
-
-} */
+Future<Transaction> save(Transaction transaction) async {
+  final response = await http.post(
+    Uri.parse(url),
+    body: jsonEncode({
+      'value': transaction.value,
+      'contact': {
+        'name': transaction.contact.name,
+        'accountNumber': transaction.contact.accountNumber
+      }
+    }),
+    headers: {'Content-Type': 'application/json', 'password': '1000'},
+  );
+  Map<String, dynamic> json = jsonDecode(response.body);
+  final Map<String, dynamic> contactJson = json['contact'];
+ return Transaction(
+    json['value'],
+    Contact(
+      0,
+      contactJson['name'],
+      contactJson['accountNumber'],
+    ),
+  );
+}
